@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "common-bin": "^2.2.0",
-    "neutrino": "^5.4.0"
+    "neutrino": "^5.5.1"
   },
   "devDependencies": {
     "autod": "^2.7.1",

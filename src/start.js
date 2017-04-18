@@ -3,7 +3,8 @@
 const { start } = require('neutrino');
 const ora = require('ora');
 
-module.exports = (middleware, options, eggInstance, done) => {
+module.exports = (middleware, options, app) => {
+
   const spinner = ora('Building project').start();
 
   return start(middleware, options)
@@ -11,8 +12,8 @@ module.exports = (middleware, options, eggInstance, done) => {
       errors => {
         spinner.fail('Building project failed');
         errors.forEach(err => {
-          eggInstance.logger.error(err.stack || err);
-          err.details && eggInstance.logger.error(err.details);
+          app.logger.error(err.stack || err);
+          err.details && app.logger.error(err.details);
         });
       },
       compiler => {
@@ -33,8 +34,6 @@ module.exports = (middleware, options, eggInstance, done) => {
           building.text = 'Source changed, re-compiling';
           building.start();
         });
-
-        done();
       }
     );
 };

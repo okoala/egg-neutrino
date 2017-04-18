@@ -7,7 +7,10 @@ exports.neutrino = {
   config: {
     devServer: {
       proxy: {
-        '/api': `http://127.0.0.1:${defaultPort}`,
+        '/api': {
+          target: `http://127.0.0.1:${defaultPort}`,
+          secure: false,
+        },
       },
     },
   },
